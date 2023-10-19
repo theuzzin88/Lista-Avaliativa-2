@@ -1,1 +1,50 @@
+#include <stdio.h>
+
+int main() {
+    int valores[10];
+    int novos_valores[10];
+    
+    for (int i = 0; i < 10; i++) {
+        scanf("%d", &valores[i]);
+        novos_valores[i] = valores[i];
+    }
+    
+    for (int i = 0; i < 10; i++) {
+        printf("%d", novos_valores[i]);
+        if (i < 9) {
+            printf(" ");
+        }
+    }
+    printf("\n");
+    
+    int contador = 0;
+    
+    while (contador < 10) {
+        int novo_tamanho = 0;
+        for (int i = 0; i < 9; i++) {
+            novos_valores[i] = valores[i] + valores[i + 1];
+            novo_tamanho++;
+        }
+        
+        for (int i = 0; i < novo_tamanho; i++) {
+            printf("%d", novos_valores[i]);
+            if (i < novo_tamanho - 1) {
+                printf(" ");
+            }
+        }
+        printf("\n");
+        
+        if (novo_tamanho == 1) {
+            break; 
+        }
+        
+        for (int i = 0; i < novo_tamanho; i++) {
+            valores[i] = novos_valores[i];
+        }
+        
+        contador++;
+    }
+    
+    return 0;
+}
 
