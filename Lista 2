@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Jogador {
+    char nome[31];
+    char posicao;
+    int forca;
+};
+
+float calcularForca(struct Jogador time[11]) {
+    int forca_goleiro = 0;
+    int forca_laterais = 0;
+    int forca_zagueiros = 0;
+    int forca_volantes = 0;
+    int forca_meias = 0;
+    int forca_atacantes = 0;
+
+    for (int i = 0; i < 11; i++) {
+        if (time[i].posicao == 'G') {
+            forca_goleiro = time[i].forca;
+        } else if (time[i].posicao == 'L') {
+            forca_laterais += time[i].forca;
+        } else if (time[i].posicao == 'Z') {
+            forca_zagueiros += time[i].forca;
+        } else if (time[i].posicao == 'V') {
+            forca_volantes += time[i].forca;
+        } else if (time[i].posicao == 'M') {
+            forca_meias += time[i].forca;
+        } else if (time[i].posicao == 'A') {
+            forca_atacantes += time[i].forca;
+        }
+    }
+
+    return (8 * forca_goleiro + 10 * (forca_laterais) + 5 * (forca_zagueiros) +
+            8 * (forca_volantes) + 11 * (forca_meias) + 12 * (forca_atacantes)) / 100.0;
+}
+
+int main() {
+    struct Jogador time1[11];
+    struct Jogador time2[11];
+
+    for (int i = 0; i < 11; i++) {
+        char nome[31];
+        char posicao;
+        int forca;
+        int lidos = scanf(" %30[^;];%c;%d", nome, &posicao, &forca);
+        if (lidos != 3) {
+            printf("Erro na leitura dos jogadores.\n");
+            return 1;
+        }
+
+        strcpy(time1[i].nome, nome);
+        time1[i].posicao = posicao;
+        time1[i].forca = forca;
+    }
+
+    for (int i = 0; i < 11; i++) {
+        char nome[31];
+        char posicao;
+        int forca;
+        int lidos = scanf(" %30[^;];%c;%d", nome, &posicao, &forca);
+        if (lidos != 3) {
+            printf("Erro na leitura dos jogadores.\n");
+            return 1;
+        }
+
+        strcpy(time2[i].nome, nome);
+        time2[i].posicao = posicao;
+        time2[i].forca = forca;
+    }
+
+    float forcaTime1 = calcularForca(time1);
+    float forcaTime2 = calcularForca(time2);
+
+    printf("%.2f de forca\n", forcaTime1);
+    printf("%.2f de forca\n", forcaTime2);
+
+    if (forcaTime1 > forcaTime2) {
+        printf("%s eh mais forte\n", time1[0].nome);
+    } else {
+        printf("%s eh mais forte\n", time2[0].nome);
+    }
+
+    return 0;
+}
