@@ -72,14 +72,14 @@ int main() {
     float forcaTime1 = calcularForca(time1);
     float forcaTime2 = calcularForca(time2);
 
-    printf("%.2f de forca\n", forcaTime1);
-    printf("%.2f de forca\n", forcaTime2);
+    printf("%s: %.2f de forca\n", forcaTime1);
+    printf("%s: %.2f de forca\n", forcaTime2);
 
     if (forcaTime1 > forcaTime2) {
-        printf("%s eh mais forte\n", time1[0].nome);
-    } else {
-        printf("%s eh mais forte\n", time2[0].nome);
-    }
+    printf("%s eh mais forte\n", time1[0].nome);
+} else {
+    printf("%s eh mais forte\n", time2[0].nome);
+}
 
     return 0;
 }
