@@ -66,7 +66,6 @@ int main() {
     fgets(nome_time2, sizeof(nome_time2), stdin);
     nome_time2[strcspn(nome_time2, "\n")] = '\0';  // Remova a quebra de linha, se presente
 
-    // Leitura dos jogadores para o Time 2
     for (int i = 0; i < 11; i++) {
         char nome[31];
         char posicao;
