@@ -31,14 +31,21 @@ float calcularForca(struct Jogador time[11]) {
         }
     }
 
-    return (8 * forca_goleiro + 10 * (forca_laterais) + 5 * (forca_zagueiros) +
-            8 * (forca_volantes) + 11 * (forca_meias) + 12 * (forca_atacantes)) / 100.0;
+    return (8 * forca_goleiro + 10 * forca_laterais + 5 * forca_zagueiros +
+            8 * forca_volantes + 11 * forca_meias + 12 * forca_atacantes) / 100.0;
 }
 
 int main() {
+    char nome_time1[31];
+    char nome_time2[31];
+
+    scanf("%s", nome_time1);
+
+
     struct Jogador time1[11];
     struct Jogador time2[11];
 
+    // Leitura dos jogadores para o Time 1
     for (int i = 0; i < 11; i++) {
         char nome[31];
         char posicao;
@@ -54,6 +61,8 @@ int main() {
         time1[i].forca = forca;
     }
 
+    scanf("%s[^/n],%c;%d", nome_time2);
+    // Leitura dos jogadores para o Time 2
     for (int i = 0; i < 11; i++) {
         char nome[31];
         char posicao;
@@ -72,14 +81,14 @@ int main() {
     float forcaTime1 = calcularForca(time1);
     float forcaTime2 = calcularForca(time2);
 
-    printf("%s: %.2f de forca\n", forcaTime1);
-    printf("%s: %.2f de forca\n", forcaTime2);
+    printf("%s: %.2f de forca\n", nome_time1, forcaTime1);
+    printf("%s: %.2f de forca\n", nome_time2, forcaTime2);
 
     if (forcaTime1 > forcaTime2) {
-    printf("%s eh mais forte\n", time1[0].nome);
-} else {
-    printf("%s eh mais forte\n", time2[0].nome);
-}
+        printf("%s eh mais forte\n", nome_time1);
+    } else {
+        printf("%s eh mais forte\n", nome_time2);
+    }
 
     return 0;
 }
